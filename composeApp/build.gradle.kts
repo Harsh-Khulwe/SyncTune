@@ -47,6 +47,21 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            //firebase
+            implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.10.0"))
+            implementation(libs.firebase.auth.ktx)
+            implementation(libs.firebase.firestore.ktx)
+
+            //compose
+            val compose_version = "1.6.8"
+            implementation("androidx.compose.ui:ui:$compose_version")
+            implementation("androidx.compose.material:material:$compose_version")
+            implementation("androidx.compose.ui:ui-tooling-preview:$compose_version")
+            implementation("androidx.compose.material:material-icons-extended:1.7.4")
+
+            //Navigation
+            implementation("androidx.navigation:navigation-compose:2.8.9")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -94,6 +109,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
 }
 
