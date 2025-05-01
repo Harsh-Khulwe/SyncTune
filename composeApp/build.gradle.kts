@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    id("com.google.gms.google-services")
 }
 
 kotlin {
@@ -54,11 +55,14 @@ kotlin {
             implementation(libs.firebase.firestore.ktx)
 
             //compose
-            val compose_version = "1.6.8"
-            implementation("androidx.compose.ui:ui:$compose_version")
-            implementation("androidx.compose.material:material:$compose_version")
-            implementation("androidx.compose.ui:ui-tooling-preview:$compose_version")
-            implementation("androidx.compose.material:material-icons-extended:1.7.4")
+            val composeVersion = "1.6.8"
+            implementation("androidx.compose.ui:ui:$composeVersion")
+            implementation("androidx.compose.material:material:$composeVersion")
+            implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+            implementation("androidx.compose.material:material-icons-extended:1.7.8")
+
+            //webRTC
+            implementation("com.dafruits:webrtc:123.0.0")
 
             //Navigation
             implementation("androidx.navigation:navigation-compose:2.8.9")
@@ -73,6 +77,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(projects.shared)
+            implementation(libs.androidx.runtime.livedata)
+            implementation(libs.androidx.material3.android)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -109,8 +115,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.runtime.livedata)
-    implementation(libs.androidx.material3.android)
     debugImplementation(compose.uiTooling)
 }
 

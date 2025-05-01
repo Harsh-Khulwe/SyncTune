@@ -2,6 +2,7 @@ package io.synctune.app.screens
 
 import android.util.Patterns
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ButtonElevation
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -44,6 +47,7 @@ import io.synctune.app.viewmodels.AuthViewModel
 fun LoginScreen(
     authViewModel: AuthViewModel,
     navigateToSignup: () -> Unit,
+    navigateToLocalPlayer: () -> Unit,
     onSignInSuccess: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
@@ -55,6 +59,7 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier
+            .background(Color(239, 241, 245))
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
@@ -139,11 +144,23 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text("Don't have an account?")
+        Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = "Sign Up",
             color = Color.Blue,
             modifier = Modifier.clickable { navigateToSignup() }
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        androidx.compose.material3.Button (
+            onClick = navigateToLocalPlayer,
+            shape = RoundedCornerShape(16.dp),
+            colors = androidx.compose.material3.ButtonDefaults.buttonColors(Color.Cyan),
+            elevation = androidx.compose.material3.ButtonDefaults.buttonElevation(10.dp)
+        ){
+            Text("Local Music Player")
+        }
     }
     LaunchedEffect(result) {
         when (result) {

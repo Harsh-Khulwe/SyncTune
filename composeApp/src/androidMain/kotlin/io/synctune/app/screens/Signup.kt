@@ -1,5 +1,6 @@
 package io.synctune.app.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -22,7 +24,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,6 +52,7 @@ fun SignupScreen(
 
     Column(
         modifier = Modifier
+            .background(Color(239, 241, 245))
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
@@ -124,7 +126,7 @@ fun SignupScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             trailingIcon = {
                 val image = if(isPassVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                val desc = if(isPassVisible) "Makes it invisible" else "Makes it visible"
+                val desc = if(isPassVisible) "Makes it visible" else "Makes it invisible"
 
                 IconButton(
                     onClick = {
@@ -151,7 +153,7 @@ fun SignupScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(
+        androidx.compose.material.Button(
             onClick = {
                 navigateToSignin()
                 authViewModel.signUp(email, password, firstName, lastName)
@@ -173,6 +175,7 @@ fun SignupScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         Text("Already have an account?")
+        Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = "Sign in",
             color = Color.Blue,
