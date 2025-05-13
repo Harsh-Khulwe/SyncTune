@@ -50,7 +50,7 @@ fun MusicList(navigateToLocalPlayer: () -> Unit) {
 
         CategoryTabs()
 
-        DropdownSelector()
+//        DropdownSelector()
 
         SongList(navigateToLocalPlayer)
 
@@ -95,32 +95,9 @@ fun CategoryItem(icon: ImageVector, text: String) {
 }
 
 @Composable
-fun DropdownSelector() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Icon(Icons.Default.Shuffle, contentDescription = "Shuffle", tint = Color.Gray)
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            "Lorem ipsum",
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
-            modifier = Modifier
-                .background(Color(0xFFF5F5F5), shape = RoundedCornerShape(16.dp))
-                .padding(8.dp)
-        )
-        Spacer(modifier = Modifier.weight(1f))
-        Icon(Icons.Default.GridView, contentDescription = "Grid View", tint = Color.Gray)
-    }
-}
-
-@Composable
 fun SongList(navigateToLocalController: () -> Unit) {
     LazyColumn {
-        items(10) { index ->
+        items(10) {
             SongItem(navigateToController = navigateToLocalController)
         }
     }
@@ -184,6 +161,31 @@ fun MiniPlayer() {
         Icon(Icons.AutoMirrored.Filled.QueueMusic, contentDescription = "Playlist", tint = Color.Black)
     }
 }
+
+/*
+@Composable
+fun DropdownSelector() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(Icons.Default.Shuffle, contentDescription = "Shuffle", tint = Color.Gray)
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            "Lorem ipsum",
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
+            modifier = Modifier
+                .background(Color(0xFFF5F5F5), shape = RoundedCornerShape(16.dp))
+                .padding(8.dp)
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        Icon(Icons.Default.GridView, contentDescription = "Grid View", tint = Color.Gray)
+    }
+}
+ */
 
 //@Composable
 //@Preview

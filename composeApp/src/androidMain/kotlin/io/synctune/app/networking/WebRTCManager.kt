@@ -128,4 +128,30 @@ class WebRTCManager(
             }
     }
 
+    fun sendTrackToPeer(streamUrl: String, startTimestamp: Long) {
+        val syncData = mapOf(
+            "url" to streamUrl,
+            "startTime" to startTimestamp
+        )
+
+        firestore.collection("calls")
+            .document(callId)
+            .collection("sync")
+            .document("currentTrack")
+            .set(syncData)
+    }
+
+    fun listenForTrackSync(onTrackReceived: (url: String, startTime: Long) -> Unit) {
+        firestore.collection("calls")
+            .document(callId)
+            .collection("sync")
+            .document("currentTrack")
+            .addSnapshotListener { docSnapshot, _ ->
+                val url = docSnapshot?.getString("url") ?: return@addSnapshotListener
+                val startTime = docSnapshot.getLong("startTime") ?: return@addSnapshotListener
+
+                onTrackReceived(url, startTime)
+            }
+    }
+
 }
