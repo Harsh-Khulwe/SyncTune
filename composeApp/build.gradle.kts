@@ -54,6 +54,10 @@ kotlin {
             implementation(libs.firebase.auth.ktx)
             implementation(libs.firebase.firestore.ktx)
 
+            //Coil Image Loader
+            implementation("io.coil-kt:coil-compose:2.4.0")
+
+
             //compose
             val composeVersion = "1.6.8"
             implementation("androidx.compose.ui:ui:$composeVersion")
@@ -73,6 +77,10 @@ kotlin {
 
             // Coroutines
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
+
+            //Exoplayer
+            implementation ("androidx.media3:media3-exoplayer:1.3.1")
+            implementation ("androidx.media3:media3-ui:1.3.1")
 
         }
         commonMain.dependencies {
